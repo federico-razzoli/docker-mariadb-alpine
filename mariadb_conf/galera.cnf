@@ -1,0 +1,6 @@
+# cluster-wide settings
+!include /etc/mysql/galera-cluster.cnf
+# node-specific settings
+!include /etc/mysql/galera-node.cnf
+
+

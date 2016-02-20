@@ -1,0 +1,15 @@
+#
+# Galera local node settings
+# (overwrite cluster settings)
+#
+
+[galera]
+
+# local node ip address
+#wsrep_node_address=
+# alternative to ip address
+#wsrep_node_name=
+# used for client connections
+#wsrep_node_incoming_address=
+
+
