@@ -9,20 +9,27 @@ RUN mysql_install_db --user=mysql
 
 # make life easier
 ENV TERM xterm
+# less platform-dependent
+ENV MARIADB_DATA_PATH /var/lib/mysql
+ENV MARIADB_LOGS_PATH /var/log/mysql
 
 # import files into container
 COPY mariadb_conf/* /etc/mysql/
+
+# last optimizations are done against the running daemon via SQL
+#RUN mysqld && until [ -e /var/run/mysqld/mysqld.sock ]; do sleep 1; done && mysql -e "DELETE FROM mysql.user WHERE user NOT LIKE 'root' OR host LIKE 'localhost';"
+
+# other applications need to backup/analyze data and logs
+VOLUME MARIADB_DATA_PATH
+VOLUME MARIADB_LOGS_PATH
+
+# demonize
+ENTRYPOINT ["mysqld_safe"]
 
 # MariaDB port
 EXPOSE 3306
 # Galera ports
 # EXPOSE 4567 4568 4444
-
-# demonize
-ENTRYPOINT ["mysqld_safe"]
-
-# last optimizations are done against the running daemon via SQL
-#RUN mysqld && until [ -e /var/run/mysqld/mysqld.sock ]; do sleep 1; done && mysql -e "DELETE FROM mysql.user WHERE user NOT LIKE 'root' OR host LIKE 'localhost';"
 
 # metadata
 LABEL   com.federico-razzoli.copyright="Federico Razzoli" \
