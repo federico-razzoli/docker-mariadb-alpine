@@ -32,6 +32,6 @@ EXPOSE 3306
 # metadata
 LABEL   com.federico-razzoli.copyright="Federico Razzoli" \
 	com.federico-razzoli.license="GNU AGPL 3.0" \
-	com.federico-razzoli.maturity="stable"
+	com.federico-razzoli.maturity="beta"
 
 
