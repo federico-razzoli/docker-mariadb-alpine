@@ -21,6 +21,11 @@ COPY mariadb_conf/* /etc/mysql/
 VOLUME /var/lib/mysql
 VOLUME /var/log/mysql
 
+# create and make available a directory for backups
+mkdir -p /var/backups/mysql
+chmod a+r /var/backups/mysql/
+VOLUME /var/backups/mysql
+
 # demonize
 ENTRYPOINT ["mysqld_safe"]
 
