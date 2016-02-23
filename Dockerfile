@@ -22,8 +22,8 @@ VOLUME /var/lib/mysql
 VOLUME /var/log/mysql
 
 # create and make available a directory for backups
-mkdir -p /var/backups/mysql
-chmod a+r /var/backups/mysql/
+RUN mkdir -p /var/backups/mysql
+RUN chmod a+r /var/backups/mysql/
 VOLUME /var/backups/mysql
 
 # demonize
